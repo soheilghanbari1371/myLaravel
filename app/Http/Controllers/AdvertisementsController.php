@@ -11,6 +11,8 @@ class AdvertisementsController extends Controller
     //
     public function insert(Request $request)
     {
+
+        $req = $request;
         $advertisements = new Advertisement();
         $advertisements->coin = $request->coin;
         $advertisements->min = $request->min;
