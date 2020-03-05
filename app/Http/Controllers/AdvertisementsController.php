@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Advertisement;
+use App\Http\Requests\InsertAd;
+use App\Http\Requests\SearchAd;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AdvertisementsController extends Controller
 {
     //
-    public function insert(Request $request)
+    public function insert(InsertAd $request)
     {
 
-        $req = $request;
+        
         $advertisements = new Advertisement();
         $advertisements->coin = $request->coin;
         $advertisements->min = $request->min;
@@ -29,7 +31,7 @@ class AdvertisementsController extends Controller
         $advertisement = Advertisement::where('id',$id)->first();
         return view('user_ads_detail',compact('advertisement')) ;
     }
-    public function searchFilteredList(Request $request){
+    public function searchFilteredList(SearchAd $request){
         $advertisement = Advertisement::where('min','<=',$request->max)
             ->where('max','>=',$request->min)
             ->where('status','active')
@@ -56,7 +58,12 @@ class AdvertisementsController extends Controller
     {
         $user = Auth::user();
         $advertisement = $user->advertisements->where('id',$id)->first();
-        return view('user_advertisement_item',compact('advertisement'));
+        if(is_null($advertisement)){
+
+        }else{
+            return view('user_advertisement_item',compact('advertisement'));
+
+        }
     }
 
     public function sellAdvertisement($id)

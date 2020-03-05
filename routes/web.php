@@ -28,7 +28,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('user_ads_detail/{id}', 'AdvertisementsController@getAd');
     Route::post('search/crypto_list', 'AdvertisementsController@searchFilteredList');
     Route::get('crypto/item/{id}', 'AdvertisementsController@searchItem');
-    Route::post('deal/set_warranty/{id}', 'DealBuyerController@set_warranty');//need middleware
+    Route::post('deal/set_warranty/{id}', 'DealBuyerController@set_warranty')->middleware('requestowner');//need middleware
     Route::post('deal/set_release/{id}', 'DealBuyerController@set_release');//need middleware
     Route::post('deal/set_cancel/{id}', 'DealBuyerController@set_cancel');//need middleware
     Route::post('deal/set_request/{id}', 'DealBuyerController@set_request');//need middleware

@@ -4,6 +4,15 @@
         <div class="col-md-12">
             <div class="panel panel-flat">
                 <div class="panel-body">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="tabbable">
                         <ul class="nav nav-tabs nav-justified custome-nav-tabs">
                             <li class="active text-bold">
@@ -33,7 +42,7 @@
                                           method="post" id="set_ads">
                                         @csrf
                                         <div class="col-md-2">
-                                            <select id="coinname" name="coin" class="form-control">
+                                            <select id="coinname" name="coin" class="form-control"  value="{{old('coin')}}">
                                                 <option value="opt">انتخاب کنید</option>
                                                 <option value="BTC">BTC</option>
                                                 <option value="DOGE">DOGE</option>
@@ -48,7 +57,7 @@
                                         <div class="col-md-2">
                                             <div class="input-group">
                                                 <input type="text" name="min" class="form-control"
-                                                       placeholder="0.00001">
+                                                       placeholder="0.00001"  value="{{old('min')}}">
                                                 <span class="input-group-addon"><i
                                                         class="icon-arrow-down7"></i></span>
                                             </div>
@@ -57,7 +66,7 @@
                                         <div class="col-md-2">
                                             <div class="input-group">
                                                 <input type="text" name="max" class="form-control"
-                                                       placeholder="0.1">
+                                                       placeholder="0.1" value="{{old('max')}}">
                                                 <span class="input-group-addon"><i
                                                         class="icon-arrow-up7"></i></span>
                                             </div>
@@ -66,7 +75,7 @@
                                         <div class="col-md-2">
                                             <div class="input-group">
                                                 <input type="text" id="percent" name="percent"
-                                                       class="form-control" placeholder="0">
+                                                       class="form-control" placeholder="0"  value="{{old('percent')}}">
                                                 <span class="input-group-addon"><i class="icon-percent"></i></span>
                                             </div>
                                             <span class="help-block text-center">درصد اختلاف با قیمت لحظه ای</span>

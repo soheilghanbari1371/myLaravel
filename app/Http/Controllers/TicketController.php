@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Chat;
+use App\Http\Requests\TicketRequest;
 use App\Ticket;
 use App\Ticketchat;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class TicketController extends Controller
        return view('user_set_new_ticket');
     }
 
-    public function setNewTicket(Request $request)
+    public function setNewTicket(TicketRequest $request)
     {
         $new_ticket = new Ticket();
         $new_ticket->subject = $request->subject;
@@ -49,9 +50,14 @@ class TicketController extends Controller
 
     public function ticketChatroom($id)
     {
-        $ticket = Ticket::where('id',$id)->first();
+        $ticket =  Auth::user()->tickets->where('id',$id)->first();
         $ticket_chats = Ticketchat::where('ticket_id',$id)->get();
-        return view('user_ticket_detail',compact('ticket_chats','ticket'));
+        if(is_null($ticket)){
+
+        }else{
+            return view('user_ticket_detail',compact('ticket_chats','ticket'));
+
+        }
 
     }
 }

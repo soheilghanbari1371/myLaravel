@@ -221,17 +221,29 @@
 
                                 <div class="col-lg-12">
                                     <div class="row">
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
                                         <div class="suggest-count form-group">
 
                                             <div class="col-lg-8">
                                                 <form id="form_set_buy_suggest" method="post"
                                                       action="{{url('deal/set_request/'.$advertisement->id)}}">
+                                                    <input name="adid" value="{{$advertisement->id}}"
+                                                           type="hidden">
                                                     @csrf
                                                     <div class="input-group">
                                                             <span class="input-group-addon"><i
                                                                     class="icon-coins"></i></span>
-                                                        <input name="amount" id="suggest_count" class="form-control"
+                                                        <input name="amount" id="suggest_count" value="{{old('amount')}}" class="form-control"
                                                                placeholder="تعداد ارز مورد نیاز شما">
+
 
                                                         <span class="input-group-btn btn-submit">
                     													<button class="btn bg-gold" type="submit">ارسال درخواست </button>

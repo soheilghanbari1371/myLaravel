@@ -3,13 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Advertisement;
+use App\Rules\RequestRangeCheck;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class DealBuyerController extends Controller
 {
     public function set_request(Request $request , $advertisement)
     {
+
+        $messages =[
+            'amount.required' => 'تعداد ارز مورد تقاضا را وارد کنید.',
+            'amount.numeric' => 'تعداد درخواست باید عددی باشد.',
+        ];
+//
+        $request->validate([
+            'amount' => ['required', 'numeric', new RequestRangeCheck($request->adid)],
+        ],$messages);
+
+
+
         $item = new \App\Request();
         $item->user_id = Auth::id();
         $item->amount = $request->amount;
@@ -24,7 +38,7 @@ class DealBuyerController extends Controller
         $user = Auth::user();
         $balance = $user->balance;
         $request =\App\Request::where('id',$request_id)->first();
-        if($balance>=$request->price){
+        if(Gate::allows('request-owner',$request_id)){
             $new_balance = $balance - $request->price;
             $user->balance = $new_balance;
             $user->blockedmoney = $request->price;
@@ -43,22 +57,27 @@ class DealBuyerController extends Controller
 
     public function set_release(Request $requested_user , $request_id)
     {
-        $user_buyer = Auth::user();
-        $request = $user_buyer->requests->where('id',$request_id)->first();
-        $request->status = 'approved';
+        if(Gate::allows('set-release',$request_id)){
+            $user_buyer = Auth::user();
+            $request = $user_buyer->requests->where('id',$request_id)->first();
+            $request->status = 'approved';
 
-        $user_ad_owner = $request->advertisement->user;
-        $newBlockeMoney = ($requested_user->user()->blockedmoney)-($request->price);
+            $user_ad_owner = $request->advertisement->user;
+            $newBlockeMoney = ($requested_user->user()->blockedmoney)-($request->price);
 
-        $user_buyer->blockedmoney = $newBlockeMoney;
+            $user_buyer->blockedmoney = $newBlockeMoney;
 
-        $user_ad_owner->balance = $user_ad_owner->balance +($request->price);
+            $user_ad_owner->balance = $user_ad_owner->balance +($request->price);
 
-        $request->save();
-        $user_ad_owner->save();
-        $user_buyer->save();
+            $request->save();
+            $user_ad_owner->save();
+            $user_buyer->save();
 
-        return back();
+            return back();
+        }else{
+            return Redirect::back()->withErrors(['error', 'release error']);
+        }
+
 
 
 
@@ -80,8 +99,13 @@ class DealBuyerController extends Controller
     {
         $user = Auth::user();
         $request = $user->requests->where('id',$id)->first();
-        $advertisement = $request->advertisement;
-        return view('user_buy_item',compact('advertisement','request')) ;
+        if (is_null($request)){
+
+        }else{
+            $advertisement = $request->advertisement;
+            return view('user_buy_item',compact('advertisement','request')) ;
+
+        }
 
     }
 
