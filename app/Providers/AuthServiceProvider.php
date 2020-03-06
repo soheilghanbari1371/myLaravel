@@ -37,6 +37,16 @@ class AuthServiceProvider extends ServiceProvider
         });
 
 
+        Gate::define('ticket-owner',function ($user,$ticket_id){
+            $item = $user->tickets->where('id',$ticket_id)->first();
+            if(is_null($item)){
+                return false;
+            }else{
+                return true;
+            }
+        });
+
+
         Gate::define('set-release',function ($user,$request_id){
             $request = $user->requests->where('id',$request_id)->first();
             if(!is_null($request)){

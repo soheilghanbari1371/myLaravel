@@ -6,6 +6,7 @@ use App\Chat;
 use App\Http\Requests\TicketRequest;
 use App\Ticket;
 use App\Ticketchat;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,12 +35,16 @@ class TicketController extends Controller
 
     public function setNewTicketChat(Request $request)
     {
+        if(Gate::allows('ticket-owner',$request->ticket_id)) {
+            $new_ticket_chat = new Ticketchat();
+            $new_ticket_chat->text = $request->text;
+            $ticket = Ticket::where('id', $request->ticket_id)->first();
+            $ticket->ticketchats()->save($new_ticket_chat);
+            return "ok";
+        }else{
+            return "error";
+        }
 
-        $new_ticket_chat = new Ticketchat();
-        $new_ticket_chat->text = $request->text;
-        $ticket = Ticket::where('id',$request->ticket_id)->first();
-        $ticket->ticketchats()->save($new_ticket_chat);
-        return "ok";
     }
 
     public function ticketList()
@@ -52,6 +57,7 @@ class TicketController extends Controller
     {
         $ticket =  Auth::user()->tickets->where('id',$id)->first();
         $ticket_chats = Ticketchat::where('ticket_id',$id)->get();
+
         if(is_null($ticket)){
 
         }else{
