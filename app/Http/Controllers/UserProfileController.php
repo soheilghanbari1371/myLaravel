@@ -72,4 +72,12 @@ class UserProfileController extends Controller
         $user->homephone = $request->home_phone;
 
     }
+
+
+    public function showUserProfile()
+    {
+
+        return view('user_profile');
+
+    }
 }

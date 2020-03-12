@@ -51,6 +51,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('user/history/whitdraw', 'UserHistoryController@withdrawHistory');
     Route::get('user/authentication/form', 'UserProfileController@authUserData');
     Route::post('user/fill/user/data', 'UserProfileController@fillUserData');
+    Route::get('user/profile/page', 'UserProfileController@showUserProfile');
+
 
 
 

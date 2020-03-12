@@ -421,7 +421,7 @@
                             <li>
                             </li>
                             <li>
-                                <a href=''><i
+                                <a href='{{url('user/profile/page')}}'><i
                                         class="icon-user"></i>
                                     <span>حساب کاربری</span></a>
                             </li>

@@ -1,121 +1,211 @@
 @extends('user_master_page')
 @section('main_content')
+    <!-- Content area -->
     <div class="content">
-        <div class="row ">
-            <div class="panel panel-flat border-top-black panel-background-lemon">
-                <div class="panel-heading panel-background-lemon">
-                    <h5 class="panel-title">اگهی شما</h5>
-                    <a class="heading-elements-toggle"><i class="icon-menu"></i></a></div>
 
-                <div class="panel-body">
-                </div>
-
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                        <tr class="bg-gold">
-                            <th >نوع ارز</th>
-                            <th >تعداد</th>
-                            <th data-breakpoints="xs sm ">اختلاف قیمت</th>
-                            <th data-breakpoints="xs sm ">تاریخ</th>
-                            <th data-breakpoints="xs sm ">وضعیت اگهی</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        <tr>
-                        <td>{{$advertisement->coin}}</td>
-                        <td>{{$advertisement->min}} ~ {{$advertisement->max}}</td>
-                        <td>{{$advertisement->percent}}</td>
-                        <td>{{$advertisement->created_at}}</td>
-                        @if($advertisement->status=="active")
-                            <td><span class='label label-success'>اگهی فعال میباشد</span>
-                              <a  class= 'text-danger' href=''>حذف آگهی</a>
-                            </td>
-                        @endif
-                        @if($advertisement->status=="disabled")
-                            <td><span class='label label-warning'>اگهی غیر فعال شده است</span>
-                            </td>
-                        @endif
-                        @if($advertisement->status=="finished"){
-                            <td><span class='label label-info'>معامله انجام شده است</span>
-                            </td>
-                        @endif
-                        @if($advertisement->status=="removed"){
-                            <td><span class='label label-danger'>اگهی پاک شده است</span>
-                            </td>
-                        @endif
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
+        <!-- User profile -->
         <div class="row">
-            <div class="panel panel-flat border-top-black ">
-                <div class="panel-heading">
-                    <h5 class="panel-title">خریداران آگهی ارز شما</h5>
-                    <a class="heading-elements-toggle"><i class="icon-menu"></i></a></div>
+            <div class="col-lg-9">
+                <div class="tabbable">
+                    <div class="tab-content">
+                        <div class="tab-pane fade" id="activity">
+                        </div>
+                        <div class="tab-pane fade active in" id="settings">
 
-                <div class="panel-body">
-                </div>
+                            <!-- Profile info -->
+                            <div class="panel panel-flat">
+                                <div class="panel-heading">
+                                    <h6 class="panel-title">اطلاعات پروفایل</h6>
+                                    <div class="heading-elements">
 
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                        <tr class="bg-gold">
-                            <th >خریدار</th>
-                            <th >تعداد مورد تقاضا</th>
-                            <th data-breakpoints="xs sm ">قیمت کل</th>
-                            <th data-breakpoints="xs sm ">تاریخ درخواست مشتری</th>
-                            <th data-breakpoints="xs sm ">وضعیت درخواست</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+                                    </div>
+                                    <a class="heading-elements-toggle"><i class="icon-menu"></i></a></div>
+
+                                <div class="panel-body">
+                                    <form action="#">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label>نام کاربری</label>
+                                                    <input type="text" value="" class="form-control" disabled>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label>نام </label>
+                                                    <input type="" value="{{\Illuminate\Support\Facades\Auth::user()->name}}" class="form-control" disabled>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label>کد ملی </label>
+                                                    <input type="text" value="{{\Illuminate\Support\Facades\Auth::user()->nationalid}}" class="form-control" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <label>ادرس</label>
+                                                    <input type="text" value="{{\Illuminate\Support\Facades\Auth::user()->address}}" class="form-control" disabled>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label>کدپستی</label>
+                                                    <input type="text" value="{{\Illuminate\Support\Facades\Auth::user()->postalcode}}" class="form-control" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label>موبایل</label>
+                                                    <input type="text" value="{{\Illuminate\Support\Facades\Auth::user()->cellphone}}" class="form-control" disabled>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label>تلفن ثابت</label>
+                                                    <input type="text" value="{{\Illuminate\Support\Facades\Auth::user()->homephone}}" class="form-control" disabled>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label>ایمیل</label>
+                                                    <input type="text" value="{{\Illuminate\Support\Facades\Auth::user()->email}}" class="form-control" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
 
 
-                        @if($advertisement->requests->count()==0)
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- /profile info -->
 
-                        @else
-                            @foreach($advertisement->requests as $item)
 
-                                <tr>
-                                <td>{{$item->user->name}}</td>
-                                <td>{{$item->amount}}</td>
-                               <td>{{$item->price}}</td>
-                               <td>{{$item->created_at}}</td>
+                            <!-- Account settings -->
+                            <div class="panel panel-flat">
+                                <div class="panel-heading">
+                                    <h6 class="panel-title">تنظیمات  رمز عبور</h6>
+                                    <div class="heading-elements">
 
-                                @if ($item->status == "waiting")
-                                    <td><span class='label label-warning '>در انتظار</span>
-                                        <a href='{{url('deal/sell_advertisement/'.$item->id)}}'>مشاهده</a>
-                                    </td>
-                                @endif
-                                @if ($item->status == "disabled")
-                                    <td><span class='label label-warning'>اگهی غیر فعال شده است</span>
-                                        </td>
-                                @endif
-                                @if ($item->status == "in-process")
-                                    <td><span class='label label-success'>پذیرفته شده</span>
-                                            <a href='{{url('deal/sell_advertisement/'.$item->id)}}'>مشاهده</a>
-                                        </td>
-                                @endif
-                                @if ($item->status == "approved") {
-                                    <td><span class='label label-success'>اتمام معامله</span>
-                                        </td>
-                                @endif
-                                @if ($item->status == "canseled") {
-                                    <td><span class='label label-danger'>کنسل شده</span>
-                                        </td>
-                                @endif
-                                </tr>
-                            @endforeach
-                        @endif
+                                    </div>
+                                    <a class="heading-elements-toggle"><i class="icon-menu"></i></a></div>
 
-                        </tbody>
-                    </table>
+                                <div class="panel-body">
+                                    <form id ="form_change_password" action="#">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>نام کاربری</label>
+                                                    <input type="text" name="user_username" value="" readonly="readonly" class="form-control">
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <label>کلمه عبور فعلی</label>
+                                                    <input name="current_password" type="password" value=""  class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>کلمه عبور جدید</label>
+                                                    <input name="new_password" type="password" placeholder="یک کلمه عبور جدید وارد کنید" class="form-control">
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <label>تکرار کلمه عبور جدید</label>
+                                                    <input name="new_password_retype" type="password" placeholder="تکرار کلمه عبور جدید" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="text-right">
+                                            <button type="submit" id="btn-change-password" class="btn btn-primary">تغییر رمز عبور<i class="icon-arrow-left13 position-right"></i></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- /account settings -->
+
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <div class="col-lg-3">
+
+                <!-- Navigation -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h6 class="panel-title">وضعیت حساب</h6>
+                        <div class="heading-elements">
+
+                        </div>
+                        <a class="heading-elements-toggle"><i class="icon-menu"></i></a></div>
+
+                    <div class="list-group list-group-borderless no-padding-top">
+                        <a href="#" class="list-group-item"><i class="icon-user"></i>
+                            حساب کاربری
+<!--                            --><?php
+//                            if($account_detail['profile']['user_status']=='approved'){
+//                                echo "<span class='label bg-success-400'>تایید شده</span>";
+//                            }
+//
+//                            if($account_detail['profile']['user_status']=='waiting'){
+//                                echo "<span class='label bg-warning-400'>در حال بررسی</span>";
+//                            }
+//                            ?>
+                        </a>
+                        <div class="list-group-divider"></div>
+                        <a href="" class="list-group-item"><i class="icon-tree7"></i>تعداد درخواست<span class="badge bg-danger pull-right"></span></a>
+
+                        <a href="" class="list-group-item"><i class="icon-calendar3"></i> تعداد اگهی <span class="badge bg-teal-400 pull-right"></span></a>
+
+                    </div>
+                </div>
+                <!-- /navigation -->
+
+
+
+
+
+                <!-- Balance chart -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h6 class="panel-title">حساب بانکی</h6>
+                        <a class="heading-elements-toggle"><i class="icon-menu"></i></a></div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-6 text-size-small">موجودی حساب </div>
+                            <div class="col-lg-6 text-right text-size-mini"> تومان </div>
+
+                        </div>
+                        <div class="list-group-divider"></div>
+                        <div class="row">
+                            <div class="col-lg-6 text-size-small">مبلغ ضمانت شده </div>
+                            <div class="col-lg-6 text-right text-size-mini">  تومان  </div>
+
+                        </div>
+                        <div class="list-group-divider"></div>
+
+                        <div class="row">
+                            <div class="col-lg-6 text-size-small">کارت </div>
+                            <div class="col-lg-6 text-right text-size-mini">  </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /balance chart -->
+
+
+
+            </div>
         </div>
+        <!-- /user profile -->
+
+
+
+
     </div>
 @endsection

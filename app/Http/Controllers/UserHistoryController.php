@@ -6,12 +6,15 @@ use App\Advertisement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use function PHPSTORM_META\type;
 
 class UserHistoryController extends Controller
 {
 
     public function buyHistory()
     {
+
+
         $buy_history = Auth::user()->requests()->where('status', 'finished')->get();
         return view('user_history_buy',compact('buy_history'));
 
