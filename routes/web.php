@@ -45,6 +45,17 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('user/set/new/ticketchat', 'TicketController@setNewTicketChat');
     Route::get('user/tickets/list', 'TicketController@ticketList');
     Route::get('user/ticket/detail/{id}', 'TicketController@ticketChatroom');
+    Route::get('user/history/buy', 'UserHistoryController@buyHistory');
+    Route::get('user/history/sell', 'UserHistoryController@sellHistory');
+    Route::get('user/history/deposite', 'UserHistoryController@depositeHistory');
+    Route::get('user/history/whitdraw', 'UserHistoryController@withdrawHistory');
+    Route::get('user/authentication/form', 'UserProfileController@authUserData');
+    Route::post('user/fill/user/data', 'UserProfileController@fillUserData');
+
+
+
+
+
 
 
 

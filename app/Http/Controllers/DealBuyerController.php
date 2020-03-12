@@ -17,7 +17,7 @@ class DealBuyerController extends Controller
             'amount.required' => 'تعداد ارز مورد تقاضا را وارد کنید.',
             'amount.numeric' => 'تعداد درخواست باید عددی باشد.',
         ];
-//
+
         $request->validate([
             'amount' => ['required', 'numeric', new RequestRangeCheck($request->adid)],
         ],$messages);

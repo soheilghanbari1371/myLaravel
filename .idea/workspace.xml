@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="864b7266-0821-494b-accf-e89a2db2dca1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/firstapp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/firstapp.iml" afterDir="false" />
+    <list default="true" id="864b7266-0821-494b-accf-e89a2db2dca1" name="Default Changelist" comment="ew">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/UserHistoryController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/UserProfileController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/user_authentication_page.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/user_history_buy.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/user_history_sell.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DealBuyerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DealBuyerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/user_master_page.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user_master_page.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,12 +127,16 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1Xv3qNSMnUWNaZ3PUTaVRFCArFH" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -159,21 +171,42 @@
       <workItem from="1582793314110" duration="12643000" />
       <workItem from="1582864879255" duration="10093000" />
       <workItem from="1583679372868" duration="995000" />
+      <workItem from="1583837817019" duration="8534000" />
+      <workItem from="1583863354605" duration="1096000" />
+      <workItem from="1583905040454" duration="9400000" />
+      <workItem from="1584001220553" duration="847000" />
     </task>
+    <task id="LOCAL-00001" summary="ew">
+      <created>1583837953136</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1583837953136</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="ew" />
+    <option name="LAST_COMMIT_MESSAGE" value="ew" />
   </component>
   <component name="WindowStateProjectService">
     <state x="417" y="173" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1582270562221">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="417" y="173" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1582270562221" />
-    <state x="463" y="121" key="FileChooserDialogImpl" timestamp="1582458521259">
+    <state x="321" y="0" key="CommitChangelistDialog2" timestamp="1584001324798">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="121" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1582458521259" />
+    <state x="321" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1584001324798" />
+    <state x="463" y="121" key="FileChooserDialogImpl" timestamp="1583852901667">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="121" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1583852901667" />
     <state width="1322" height="307" key="GridCell.Tab.0.bottom" timestamp="1581913879438">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -190,10 +223,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1322" height="307" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1581913879438" />
-    <state x="275" y="99" key="Vcs.Push.Dialog.v2" timestamp="1583679408349">
+    <state x="275" y="99" key="Vcs.Push.Dialog.v2" timestamp="1584001376107">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="99" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1583679408349" />
+    <state x="275" y="99" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1584001376107" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
