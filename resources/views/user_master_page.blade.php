@@ -367,8 +367,8 @@
                             <li>
                                 <a href="#"><i class="icon-history"></i> <span>سوابق معاملات</span></a>
                                 <ul>
-                                    <li><a href=''>سوابق خرید</a></li>
-                                    <li><a href=''>سوابق فروش</a></li>
+                                    <li><a href={{url('user/history/buy')}}>سوابق خرید</a></li>
+                                    <li><a href={{url('user/history/sell')}}>سوابق فروش</a></li>
 
                                 </ul>
                             </li>
@@ -426,7 +426,7 @@
                                     <span>حساب کاربری</span></a>
                             </li>
                             <li>
-                                <a href=''><i
+                                <a href={{url('user/authentication/form')}}><i
                                         class="icon-user-check"></i> <span>احراز هویت</span></a>
                             </li>
                             <li>
@@ -536,3 +536,4 @@
 
 </body>
 </html>
+@yield('CssOrJsFooter')
