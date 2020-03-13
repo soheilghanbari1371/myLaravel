@@ -85,7 +85,7 @@
                                         </div>
 
                                         <div class="col-sm-6 text-right">
-                                            <a href="login_password_recover.html">فراموشی کلمه عبور</a>
+                                            <a href="{{url('user/password/recovery')}}">فراموشی کلمه عبور</a>
                                         </div>
                                     </div>
                                 </div>

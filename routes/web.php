@@ -21,6 +21,12 @@ Route::get('/login', function () {
 Route::get('/user_logout', 'UserLoginController@logout');
 Route::post('/check_user', 'UserLoginController@login');
 Route::post('/user_register', 'UserRegisterController@register');
+Route::post('user/send/password/recovery/email', 'PasswordRecoveryController@userSendPasswordRecovery');
+Route::get('user/password/recovery', 'PasswordRecoveryController@userPasswordRecoveryPage');
+Route::get('user/password/recovery/register/token/', 'PasswordRecoveryController@userPasswordRecoveryRegisterToken');
+Route::post('user/password/recovery/register/token/submit', 'PasswordRecoveryController@PasswordRecoverySubmit');
+
+
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('user_dashboard', 'UserDashboardController@dashboard');
@@ -52,12 +58,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('user/authentication/form', 'UserProfileController@authUserData');
     Route::post('user/fill/user/data', 'UserProfileController@fillUserData');
     Route::get('user/profile/page', 'UserProfileController@showUserProfile');
-
-
-
-
-
-
 
 
 

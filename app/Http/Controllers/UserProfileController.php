@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserProfileController extends Controller
 {
@@ -38,8 +39,8 @@ class UserProfileController extends Controller
         ];
 
         $request->validate([
-            'nationalcodeimage' => 'required|mimes:png|max:2048',
-            'feeimage' => 'required|mimes:png|max:2048',
+            'nationalcodeimage' => 'required|mimes:jpeg|max:2048',
+            'feeimage' => 'required|mimes:jpeg|max:2048',
             'email' => 'required|email',
             'city' => 'required|string',
             'state' => 'required|string',
@@ -54,10 +55,14 @@ class UserProfileController extends Controller
         ], $messages);
 
 
-        $fileName_national_card = time() . '.' . $request->nationalcodeimage->extension();
-        $request->nationalcodeimage->move(public_path('uploads'), $fileName_national_card);
-        $fileName_fee_image = time() . '.' . $request->feeimage->extension();
-        $request->feeimage->move(public_path('uploads'), $fileName_fee_image);
+
+//        $fileName_national_card = $request->file('nationalcodeimage')->store('public/nationalcodeimage');
+//        $fileName_fee_image = $request->file('feeimage')->store('public/feeimage');
+
+        $fileName_national_card =  Storage::putFile('national_id_card', $request->file('nationalcodeimage'));
+        $fileName_fee_image =  Storage::putFile('fee_image', $request->file('feeimage'));
+
+
         $user = Auth::user();
         $user->email = $request->email;
         $user->name = $request->name . " " . $request->family;
@@ -70,6 +75,9 @@ class UserProfileController extends Controller
         $user->postalcode = $request->postal_code;
         $user->cellphone = $request->cell_phone;
         $user->homephone = $request->home_phone;
+        $user->feeimage = $fileName_fee_image;
+        $user->nationalcard = $fileName_national_card;
+        $user->save();
 
     }
 

@@ -29,6 +29,8 @@
     </script>
 @endsection
 @section('main_content')
+    <img src="{{asset('storage/bjoVzJQVDpS8ih6p6UUVoxuvwWhu6kHYspeEzdDz.jpeg')}}">
+
 
     <!-- Content area -->
     <div class="content">

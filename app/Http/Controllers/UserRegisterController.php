@@ -20,5 +20,5 @@ class UserRegisterController extends Controller
         return redirect('/login');
 
     }
-    //
+
 }
