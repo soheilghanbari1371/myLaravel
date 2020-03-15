@@ -14,7 +14,8 @@ class UserLoginController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password],$remember_me)) {
             $user = Auth::user();
             if($user->role){
-                return "admin";
+                Auth::login($user);
+                return redirect('/admin/dashboard');
             }else{
                 Auth::login($user);
                 return redirect('/user_dashboard');

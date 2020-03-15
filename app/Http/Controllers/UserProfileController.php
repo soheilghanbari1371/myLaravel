@@ -59,8 +59,8 @@ class UserProfileController extends Controller
 //        $fileName_national_card = $request->file('nationalcodeimage')->store('public/nationalcodeimage');
 //        $fileName_fee_image = $request->file('feeimage')->store('public/feeimage');
 
-        $fileName_national_card =  Storage::putFile('national_id_card', $request->file('nationalcodeimage'));
-        $fileName_fee_image =  Storage::putFile('fee_image', $request->file('feeimage'));
+        $fileName_national_card =  Storage::putFile('public/national_id_card', $request->file('nationalcodeimage'));
+        $fileName_fee_image =  Storage::putFile('public/fee_image', $request->file('feeimage'));
 
 
         $user = Auth::user();

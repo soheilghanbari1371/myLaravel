@@ -58,6 +58,27 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('user/authentication/form', 'UserProfileController@authUserData');
     Route::post('user/fill/user/data', 'UserProfileController@fillUserData');
     Route::get('user/profile/page', 'UserProfileController@showUserProfile');
+    Route::get('user/profile/page', 'UserProfileController@showUserProfile');
+
+
+    //admin routes
+    Route::get('admin/dashboard', 'AdminDashboardController@dashboard');
+    Route::get('admin/auth/request', 'AdminUserProfile@authRequests');
+    Route::get('admin/auth/request/detail/{user}', 'AdminUserProfile@authRequestsDetail');
+    Route::get('admin/approve/user/{user}', 'AdminUserProfile@approveUser');
+    Route::get('admin/search/user', 'AdminSearchController@searchUser');
+    Route::post('admin/search/user/email', 'AdminSearchController@searchUserEmail');
+    Route::post('admin/search/user/cellphone', 'AdminSearchController@searchUserCellphone');
+    Route::post('admin/search/user/id', 'AdminSearchController@searchUserId');
+
+
+
+
+
+
+
+
+
 
 
 
